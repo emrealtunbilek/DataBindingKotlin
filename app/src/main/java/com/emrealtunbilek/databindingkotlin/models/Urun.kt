@@ -3,10 +3,12 @@ package com.emrealtunbilek.databindingkotlin.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class Urun(val baslik:String, val aciklama:String,
-           val urunResim:Int, val fiyat:Double,
-           val kampanyaliFiyat:Double, val degerlendirmeSayisi:Int,
-           val degerlendirmeNotu:Float, val seriNumarasi:Int) : Parcelable {
+class Urun(
+    val baslik: String, val aciklama: String,
+    val urunResim: Int, val fiyat: Double,
+    val kampanyaliFiyat: Double, val degerlendirmeSayisi: Int,
+    val degerlendirmeNotu: Float, val seriNumarasi: Int
+) : Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readString(),
