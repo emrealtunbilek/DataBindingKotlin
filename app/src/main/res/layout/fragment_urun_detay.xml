@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
+>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".fragments.UrunDetayFragment">
+
+
+        <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/rbUrunDegerlendirmeOrt" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
+                android:layout_marginEnd="8dp" style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
+        <TextView
+                android:text="( 142 )"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDegerlendirmeSayisi" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"/>
+        <TextView
+                android:text="Kırmızı Kupa"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvurunBaslik" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/rbUrunDegerlendirmeOrt"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:textSize="18sp" android:textStyle="bold" android:textColor="@color/colorAccent"/>
+        <ImageView
+                android:src="@drawable/red_mug"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:id="@+id/imageView" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvurunBaslik" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:scaleType="fitCenter"/>
+        <TextView
+                android:text="25.99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvFiyat" android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="30sp"
+                android:textColor="@color/colorAccent"/>
+        <TextView
+                android:text="29.99"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvOrjinalFiyat" app:layout_constraintStart_toEndOf="@+id/tvFiyat"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/ustunu_ciz"
+                app:layout_constraintTop_toTopOf="@+id/tvFiyat" app:layout_constraintBottom_toBottomOf="@+id/tvFiyat"
+                android:textStyle="bold" android:textSize="24sp"/>
+
+        <com.google.android.material.button.MaterialButton
+
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                app:icon="@drawable/ic_miktar_sec"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                android:text="Miktar : 1"
+                app:layout_constraintTop_toBottomOf="@+id/tvFiyat" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" android:id="@+id/btnMiktarSec"
+        />
+
+        <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sepete Ekle"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toBottomOf="@+id/btnMiktarSec"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginEnd="8dp"
+                android:id="@+id/btnSepeteEkle"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
