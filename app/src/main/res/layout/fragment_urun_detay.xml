@@ -4,6 +4,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
 >
 
+    <data>
+
+        <import type="android.view.View"/>
+        <variable name="urun" type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
+
+    </data>
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -15,19 +22,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rbUrunDegerlendirmeOrt" android:layout_marginTop="8dp"
+                android:rating="@{urun.degerlendirmeNotu}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
                 android:layout_marginEnd="8dp" style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
         <TextView
-                android:text="( 142 )"
+                android:text="@{String.valueOf(urun.degerlendirmeSayisi)}"
                 android:layout_width="wrap_content"
+                tools:text="( 9 )"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvDegerlendirmeSayisi" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"/>
         <TextView
-                android:text="Kırmızı Kupa"
+                android:text="@{urun.baslik}"
                 android:layout_width="0dp"
+                tools:text="Ürün Başlık"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvurunBaslik" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/rbUrunDegerlendirmeOrt"
@@ -36,7 +46,7 @@
                 android:layout_marginEnd="8dp"
                 android:textSize="18sp" android:textStyle="bold" android:textColor="@color/colorAccent"/>
         <ImageView
-                android:src="@drawable/red_mug"
+                android:src="@{urun.urunResim}"
                 android:layout_width="0dp"
                 android:layout_height="250dp"
                 android:id="@+id/imageView" android:layout_marginTop="8dp"
@@ -45,17 +55,20 @@
                 android:layout_marginEnd="8dp"
                 android:scaleType="fitCenter"/>
         <TextView
-                android:text="25.99"
+                android:text="@{urun.kampanyaVarMi() ? String.valueOf(urun.kampanyaliFiyat) : String.valueOf(urun.fiyat)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="20.99"
                 android:id="@+id/tvFiyat" android:layout_marginTop="8dp"
                 app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="30sp"
                 android:textColor="@color/colorAccent"/>
         <TextView
-                android:text="29.99"
+                android:text="@{String.valueOf(urun.fiyat)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                tools:text="23.99"
+                android:visibility="@{urun.kampanyaVarMi() ? View.VISIBLE : View.INVISIBLE}"
                 android:id="@+id/tvOrjinalFiyat" app:layout_constraintStart_toEndOf="@+id/tvFiyat"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/ustunu_ciz"

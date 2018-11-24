@@ -6,15 +6,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.emrealtunbilek.databindingkotlin.databinding.FragmentUrunDetayBinding
+import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 
-import com.emrealtunbilek.databindingkotlin.R
 
 class UrunDetayFragment : Fragment() {
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View?
-    {
+    val binding:FragmentUrunDetayBinding by lazy {
+        FragmentUrunDetayBinding.inflate(layoutInflater)
+    }
 
-        return inflater.inflate(R.layout.fragment_urun_detay, container, false)
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle? ): View? {
+
+        val denemeUrun = TumUrunler()
+
+
+        binding.urun = denemeUrun.tumUrunlerDizisi.get(0)
+
+        return binding.root
     }
 
 

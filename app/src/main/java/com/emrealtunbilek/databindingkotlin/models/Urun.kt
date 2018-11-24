@@ -46,5 +46,9 @@ class Urun(
         }
     }
 
+    fun kampanyaVarMi() : Boolean{
+        return kampanyaliFiyat > 0
+    }
+
 
 }
