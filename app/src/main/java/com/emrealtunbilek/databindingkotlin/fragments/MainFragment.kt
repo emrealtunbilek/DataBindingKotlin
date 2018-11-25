@@ -21,18 +21,10 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
-
-        val mLayoutManager = GridLayoutManager(activity,2)
-
         val urunler = TumUrunler()
-        val mAdapter = UrunRecyclerviewAdapter(urunler.tumUrunlerDizisi.toCollection(ArrayList<Urun>()), activity!!)
-
-        binding.urunListesi.layoutManager=mLayoutManager
-        binding.urunListesi.adapter=mAdapter
+        binding.urunler = urunler.tumUrunlerDizisi.toCollection(ArrayList<Urun>())
 
         binding.refreshLayout.setOnRefreshListener {
-
-
             binding.refreshLayout.isRefreshing=false
         }
 
