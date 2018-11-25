@@ -26,6 +26,12 @@ class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : Recyc
         return MyViewHolder(binding)
     }
 
+    fun listeyiYenile(yeniListe:ArrayList<Urun>){
+        tumUrunler.clear()
+        tumUrunler.addAll(yeniListe)
+        notifyDataSetChanged()
+    }
+
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.urun = tumUrunler.get(position)
         holder.binding.executePendingBindings()

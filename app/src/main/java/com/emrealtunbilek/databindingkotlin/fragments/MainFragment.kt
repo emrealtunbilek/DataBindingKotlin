@@ -21,10 +21,13 @@ class MainFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
 
-        val urunler = TumUrunler()
-        binding.urunler = urunler.tumUrunlerDizisi.toCollection(ArrayList<Urun>())
+        val urunleriGetir = TumUrunler()
+
+        binding.urunler = urunleriGetir.tumUrunlerDizisi.toCollection(ArrayList<Urun>())
 
         binding.refreshLayout.setOnRefreshListener {
+            val yeniListe = urunleriGetir.tumUrunlerDizisi.toCollection(ArrayList<Urun>())
+            (binding.urunListesi.adapter as UrunRecyclerviewAdapter).listeyiYenile(yeniListe)
             binding.refreshLayout.isRefreshing=false
         }
 
