@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.emrealtunbilek.databindingkotlin.R
 import com.emrealtunbilek.databindingkotlin.databinding.TekSutunUrunLayoutBinding
+import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
 
 
@@ -14,10 +15,12 @@ class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : Recyc
 
      var tumUrunler:ArrayList<Urun>
      var mContext:Context
+     var mMainActivityInterface:IMainActivity
 
     init {
         tumUrunler = urunler
         mContext = context
+        mMainActivityInterface = mContext as IMainActivity
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -35,6 +38,7 @@ class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : Recyc
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.urun = tumUrunler.get(position)
 
+        holder.binding.mainActivityInterface=mMainActivityInterface
         //holder.binding.stringUrl="https://pixelz.cc/wp-content/uploads/2016/11/annapurna-massif-himalayas-nepal-4k-wallpaper.jpg"
 
         holder.binding.executePendingBindings()

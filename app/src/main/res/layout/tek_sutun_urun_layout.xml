@@ -6,13 +6,16 @@
     <data>
         <import type="android.view.View"/>
         <import type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
+        <import type="com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity"/>
         <variable name="urun" type="Urun"/>
+        <variable name="mainActivityInterface" type="IMainActivity"/>
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> mainActivityInterface.secilenUruneGit(urun)}"
             android:id="@+id/tumLayout">
 
         <RatingBar

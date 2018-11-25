@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.emrealtunbilek.databindingkotlin.databinding.FragmentUrunDetayBinding
+import com.emrealtunbilek.databindingkotlin.models.Urun
 import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 
 
@@ -16,14 +17,22 @@ class UrunDetayFragment : Fragment() {
         FragmentUrunDetayBinding.inflate(layoutInflater)
     }
 
+    lateinit var secilenUrun:Urun
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle? ): View? {
 
-        val denemeUrun = TumUrunler()
+
+        if(arguments != null){
+            this.secilenUrun =arguments!!.getParcelable("secilen_urun")!!
+
+            binding.urun = secilenUrun
+            binding.miktar = 1
+        }
 
 
-        binding.urun = denemeUrun.tumUrunlerDizisi.get(0)
-        binding.miktar = 5
+
+
+
 
         return binding.root
     }
