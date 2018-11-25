@@ -23,6 +23,7 @@ class UrunDetayFragment : Fragment() {
 
 
         binding.urun = denemeUrun.tumUrunlerDizisi.get(0)
+        binding.miktar = 5
 
         return binding.root
     }

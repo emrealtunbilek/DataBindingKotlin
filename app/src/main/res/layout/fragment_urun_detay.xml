@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
->
+        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View"/>
-        <variable name="urun" type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
-
+        <import type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
+        <variable name="urun" type="Urun"/>
+        <variable name="miktar" type="Integer"/>
     </data>
 
 
@@ -17,7 +16,6 @@
             android:layout_height="match_parent"
             tools:context=".fragments.UrunDetayFragment">
 
-
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -25,7 +23,8 @@
                 android:rating="@{urun.degerlendirmeNotu}"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
-                android:layout_marginEnd="8dp" style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
+                android:layout_marginEnd="8dp"
+                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
         <TextView
                 android:text="@{String.valueOf(urun.degerlendirmeSayisi)}"
                 android:layout_width="wrap_content"
@@ -81,7 +80,7 @@
                 android:layout_marginTop="8dp"
                 app:icon="@drawable/ic_miktar_sec"
                 style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:text="Miktar : 1"
+                android:text="@{urun.miktariAlveStringeCevir(miktar)}"
                 app:layout_constraintTop_toBottomOf="@+id/tvFiyat" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" android:id="@+id/btnMiktarSec"
         />

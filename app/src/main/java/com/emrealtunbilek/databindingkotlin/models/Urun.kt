@@ -50,5 +50,9 @@ class Urun(
         return kampanyaliFiyat > 0
     }
 
+    fun miktariAlveStringeCevir(miktar:Int):String{
+        return "Miktar : $miktar"
+    }
+
 
 }
