@@ -34,6 +34,9 @@ class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : Recyc
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.binding.urun = tumUrunler.get(position)
+
+        //holder.binding.stringUrl="https://pixelz.cc/wp-content/uploads/2016/11/annapurna-massif-himalayas-nepal-4k-wallpaper.jpg"
+
         holder.binding.executePendingBindings()
     }
 

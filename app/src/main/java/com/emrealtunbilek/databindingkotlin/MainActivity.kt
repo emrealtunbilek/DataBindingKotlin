@@ -12,8 +12,8 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val binding : ActivityMainBinding by lazy {
-        DataBindingUtil.setContentView<ActivityMainBinding>(this,R.layout.activity_main)
+    val binding: ActivityMainBinding by lazy {
+        DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,17 +25,17 @@ class MainActivity : AppCompatActivity() {
     private fun fragmentBaslat() {
 
         /*
-        val urunDetayFragment = UrunDetayFragment()
-        val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.anaContainer.id, urunDetayFragment,"urun_detay_fragment")
-        transaction.commit()
-        */
+               val urunDetayFragment = UrunDetayFragment()
+               val transaction = supportFragmentManager.beginTransaction()
+               transaction.replace(binding.anaContainer.id, urunDetayFragment,"urun_detay_fragment")
+               transaction.commit()*/
+
 
         val mainFragment = MainFragment()
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.anaContainer.id, mainFragment,"main_fragment")
+        transaction.replace(binding.anaContainer.id, mainFragment, "main_fragment")
         transaction.commit()
-
+               
 
     }
 
