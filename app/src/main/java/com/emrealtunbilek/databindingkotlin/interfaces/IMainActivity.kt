@@ -6,4 +6,5 @@ interface IMainActivity {
     fun secilenUruneGit(urun:Urun)
     fun miktarFragmentBaslat()
     fun miktarGuncelle(miktar:Int)
+    fun urunEkle(urun:Urun, miktar:Int)
 }

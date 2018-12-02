@@ -115,7 +115,7 @@
                     android:layout_height="wrap_content"
                     android:text="Sepete Ekle"
                     android:layout_marginTop="8dp"
-                    android:onClick="@{() -> urunViewModel.miktariDegis()}"
+                    android:onClick="@{() -> iMainInterface.urunEkle(urunViewModel.urun, urunViewModel.miktar)}"
                     app:layout_constraintTop_toBottomOf="@+id/btnMiktarSec"
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp"
