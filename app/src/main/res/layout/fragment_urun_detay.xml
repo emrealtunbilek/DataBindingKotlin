@@ -5,107 +5,134 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
-        <variable name="urun" type="Urun"/>
-        <variable name="miktar" type="Integer"/>
+        <import type="com.emrealtunbilek.databindingkotlin.models.UrunViewModel"/>
+        <variable name="urunViewModel" type="UrunViewModel"/>
+
     </data>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".fragments.UrunDetayFragment">
+    >
 
-        <RatingBar
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/rbUrunDegerlendirmeOrt" android:layout_marginTop="8dp"
-                android:rating="@{urun.degerlendirmeNotu}"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
-                android:layout_marginEnd="8dp"
-                style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
-        <TextView
-                android:text="@{String.valueOf(urun.degerlendirmeSayisi)}"
-                android:layout_width="wrap_content"
-                tools:text="( 9 )"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvDegerlendirmeSayisi" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                android:id="@+id/progressBar"
+                android:visibility="@{urunViewModel.resimYuklendi ? View.GONE : View.VISIBLE}"
+                android:layout_marginTop="8dp"
+                app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+                app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"/>
-        <TextView
-                android:text="@{urun.baslik}"
-                android:layout_width="0dp"
-                tools:text="Ürün Başlık"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvurunBaslik" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/rbUrunDegerlendirmeOrt"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                android:textSize="18sp" android:textStyle="bold" android:textColor="@color/colorAccent"/>
-        <ImageView
-                app:resimGoster="@{urun.urunResim}"
-                android:layout_width="0dp"
-                android:layout_height="250dp"
-                android:id="@+id/imageView" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/tvurunBaslik" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                android:scaleType="fitCenter"/>
-        <TextView
-                android:text="@{urun.kampanyaVarMi() ? String.valueOf(urun.kampanyaliFiyat) : String.valueOf(urun.fiyat)}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="20.99"
-                android:id="@+id/tvFiyat"
-                app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="30sp"
-                android:textColor="@color/colorAccent" app:layout_constraintTop_toBottomOf="@+id/tvurunAciklama"/>
-        <TextView
-                android:text="@{String.valueOf(urun.fiyat)}"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                tools:text="23.99"
-                android:visibility="@{urun.kampanyaVarMi() ? View.VISIBLE : View.INVISIBLE}"
-                android:id="@+id/tvOrjinalFiyat" app:layout_constraintStart_toEndOf="@+id/tvFiyat"
-                android:layout_marginStart="16dp"
-                android:background="@drawable/ustunu_ciz"
-                app:layout_constraintBottom_toBottomOf="@+id/tvFiyat"
-                android:textStyle="bold" android:textSize="24sp" app:layout_constraintTop_toTopOf="@+id/tvFiyat"/>
-
-        <com.google.android.material.button.MaterialButton
-
-                android:layout_width="wrap_content" android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:icon="@drawable/ic_miktar_sec"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
-                android:text="@{urun.miktariAlveStringeCevir(miktar)}"
-                app:layout_constraintTop_toBottomOf="@+id/tvFiyat" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" android:id="@+id/btnMiktarSec"
-        />
-
-        <com.google.android.material.button.MaterialButton
+        <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Sepete Ekle"
-                android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/btnMiktarSec"
+                android:layout_height="0dp"
+                tools:context=".fragments.UrunDetayFragment"
                 app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp"
-                android:id="@+id/btnSepeteEkle"/>
-        <TextView
-                android:text="@{urun.aciklama}"
-                android:layout_width="0dp"
-                tools:text="Ürün açıklaması buraya gelecek"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvurunAciklama" android:layout_marginTop="8dp"
-                app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
-                android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginEnd="8dp" android:textSize="18sp"/>
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:visibility="@{urunViewModel.resimYuklendi ? View.VISIBLE : View.INVISIBLE}">
+
+            <RatingBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rbUrunDegerlendirmeOrt" android:layout_marginTop="8dp"
+                    android:rating="@{urunViewModel.urun.degerlendirmeNotu}"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
+                    android:layout_marginEnd="8dp"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"/>
+            <TextView
+                    android:text="@{String.valueOf(urunViewModel.urun.degerlendirmeSayisi)}"
+                    android:layout_width="wrap_content"
+                    tools:text="( 9 )"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvDegerlendirmeSayisi" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"/>
+            <TextView
+                    android:text="@{urunViewModel.urun.baslik}"
+                    android:layout_width="0dp"
+                    tools:text="Ürün Başlık"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvurunBaslik" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/rbUrunDegerlendirmeOrt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:textSize="18sp" android:textStyle="bold" android:textColor="@color/colorAccent"/>
+            <ImageView
+                    app:resimGoster="@{urunViewModel.urun.urunResim}"
+                    android:layout_width="0dp"
+                    android:layout_height="250dp"
+                    android:id="@+id/imageView" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvurunBaslik"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:scaleType="fitCenter"/>
+            <TextView
+                    android:text="@{urunViewModel.urun.kampanyaVarMi() ? String.valueOf(urunViewModel.urun.kampanyaliFiyat) : String.valueOf(urunViewModel.urun.fiyat)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="20.99"
+                    android:id="@+id/tvFiyat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="30sp"
+                    android:textColor="@color/colorAccent" app:layout_constraintTop_toBottomOf="@+id/tvurunAciklama"/>
+            <TextView
+                    android:text="@{String.valueOf(urunViewModel.urun.fiyat)}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="23.99"
+                    android:visibility="@{urunViewModel.urun.kampanyaVarMi() ? View.VISIBLE : View.INVISIBLE}"
+                    android:id="@+id/tvOrjinalFiyat" app:layout_constraintStart_toEndOf="@+id/tvFiyat"
+                    android:layout_marginStart="16dp"
+                    android:background="@drawable/ustunu_ciz"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvFiyat"
+                    android:textStyle="bold" android:textSize="24sp" app:layout_constraintTop_toTopOf="@+id/tvFiyat"/>
+
+            <com.google.android.material.button.MaterialButton
+
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:icon="@drawable/ic_miktar_sec"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+                    android:text="@{urunViewModel.urun.miktariAlveStringeCevir(urunViewModel.miktar)}"
+                    app:layout_constraintTop_toBottomOf="@+id/tvFiyat" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" android:id="@+id/btnMiktarSec"
+            />
+
+            <com.google.android.material.button.MaterialButton
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Sepete Ekle"
+                    android:layout_marginTop="8dp"
+                    android:onClick="@{() -> urunViewModel.miktariDegis()}"
+                    app:layout_constraintTop_toBottomOf="@+id/btnMiktarSec"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:id="@+id/btnSepeteEkle" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
+            <TextView
+                    android:text="@{urunViewModel.urun.aciklama}"
+                    android:layout_width="0dp"
+                    tools:text="Ürün açıklaması buraya gelecek"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvurunAciklama" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp" android:textSize="18sp"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </layout>
