@@ -9,8 +9,6 @@ import com.emrealtunbilek.databindingkotlin.fragments.MainFragment
 import com.emrealtunbilek.databindingkotlin.fragments.UrunDetayFragment
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
-import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
-import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), IMainActivity{
 
@@ -30,12 +28,14 @@ class MainActivity : AppCompatActivity(), IMainActivity{
 
     val binding: ActivityMainBinding by lazy {
         DataBindingUtil.setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         fragmentBaslat()
+
     }
 
     private fun fragmentBaslat() {

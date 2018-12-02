@@ -3,7 +3,7 @@ package com.emrealtunbilek.databindingkotlin.models
 import android.os.Parcel
 import android.os.Parcelable
 
-class Urun(
+class Urun (
     val baslik: String, val aciklama: String,
     val urunResim: Int, val fiyat: Double,
     val kampanyaliFiyat: Double, val degerlendirmeSayisi: Int,
@@ -18,6 +18,8 @@ class Urun(
         parcel.readInt(),
         parcel.readFloat(),
         parcel.readInt()
+
+
     ) {
     }
 

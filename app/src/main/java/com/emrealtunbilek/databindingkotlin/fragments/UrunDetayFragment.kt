@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import com.emrealtunbilek.databindingkotlin.databinding.FragmentUrunDetayBinding
 import com.emrealtunbilek.databindingkotlin.models.Urun
-import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 
 
 class UrunDetayFragment : Fragment() {
@@ -24,7 +23,6 @@ class UrunDetayFragment : Fragment() {
 
         if(arguments != null){
             this.secilenUrun =arguments!!.getParcelable("secilen_urun")!!
-
             binding.urun = secilenUrun
             binding.miktar = 1
         }
