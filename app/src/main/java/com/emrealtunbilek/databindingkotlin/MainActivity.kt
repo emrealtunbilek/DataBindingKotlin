@@ -11,23 +11,31 @@ import com.emrealtunbilek.databindingkotlin.fragments.UrunDetayFragment
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
 
-class MainActivity : AppCompatActivity(), IMainActivity{
+class MainActivity : AppCompatActivity(), IMainActivity {
+
+    override fun miktarGuncelle(miktar: Int) {
+
+        Log.e("EEE", "ACTİVİTYE GELEN MİKTAR:" + miktar)
+        val detayFragment = supportFragmentManager.findFragmentByTag("urun_detay_fragment") as UrunDetayFragment
+        detayFragment.binding.urunViewModel!!.miktar = miktar
+
+    }
 
     override fun miktarFragmentBaslat() {
         val miktarFragment = MiktarDialogFragment()
-        miktarFragment.show(supportFragmentManager,"miktar_dialog")
+        miktarFragment.show(supportFragmentManager, "miktar_dialog")
     }
 
 
     override fun secilenUruneGit(urun: Urun) {
-        Log.e("EEE","SECİLEN URUN :"+urun.baslik)
+        Log.e("EEE", "SECİLEN URUN :" + urun.baslik)
 
         val urunDetayFragment = UrunDetayFragment()
-        val bundle=Bundle()
-        bundle.putParcelable("secilen_urun",urun)
+        val bundle = Bundle()
+        bundle.putParcelable("secilen_urun", urun)
         urunDetayFragment.arguments = bundle
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(binding.anaContainer.id, urunDetayFragment,"urun_detay_fragment")
+        transaction.replace(binding.anaContainer.id, urunDetayFragment, "urun_detay_fragment")
         transaction.addToBackStack("urun_detay_fragment")
         transaction.commit()
     }

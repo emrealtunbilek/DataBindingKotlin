@@ -22,7 +22,6 @@ class UrunDetayFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle? ): View? {
 
-
         if(arguments != null){
             this.secilenUrun =arguments!!.getParcelable("secilen_urun")!!
 
@@ -32,11 +31,6 @@ class UrunDetayFragment : Fragment() {
             binding.iMainInterface = activity as IMainActivity
 
         }
-
-
-
-
-
 
         return binding.root
     }

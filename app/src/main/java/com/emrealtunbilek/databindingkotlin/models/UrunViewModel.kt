@@ -43,14 +43,12 @@ class UrunViewModel(urun: Urun, miktar:Int) : BaseObservable() {
 
         return object : RequestListener<Drawable>{
             override fun onLoadFailed(e: GlideException?, model: Any?, target: Target<Drawable>?, isFirstResource: Boolean): Boolean {
-                Log.e("EEE","RESİM:"+ target+" hata:"+e?.message)
                 resimYuklendi = false
                 return false
             }
 
             override fun onResourceReady(resource: Drawable?, model: Any?, target: Target<Drawable>?, dataSource: DataSource?, isFirstResource: Boolean): Boolean {
                 resimYuklendi = true
-                Log.e("EEE","RESİM:"+ resource+" yüklenme:"+dataSource!!.name)
                 return false
             }
 
