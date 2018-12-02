@@ -9,6 +9,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.emrealtunbilek.databindingkotlin.R
+import com.emrealtunbilek.databindingkotlin.utils.GlideApp
 
 object GlideBindingAdapters {
 
@@ -54,7 +55,7 @@ object GlideBindingAdapters {
             .placeholder(R.drawable.ic_launcher_background)
             .error(R.drawable.ic_launcher_background)
 
-        Glide.with(imageView.context)
+        GlideApp.with(imageView.context)
             .setDefaultRequestOptions(options)
             .load(resimYolu)
             .listener(requestListener)

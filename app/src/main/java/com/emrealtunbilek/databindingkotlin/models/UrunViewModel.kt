@@ -33,12 +33,6 @@ class UrunViewModel(urun: Urun, miktar:Int) : BaseObservable() {
         notifyPropertyChanged(BR.resimYuklendi)
     }
 
-    fun miktariDegis(){
-        miktar = 5
-
-        Log.e("EEE","MİKTAR DEĞİŞTİRİLDİ")
-    }
-
     fun getListener() : RequestListener<Drawable>{
 
         return object : RequestListener<Drawable>{
