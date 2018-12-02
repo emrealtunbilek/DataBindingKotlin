@@ -1,6 +1,7 @@
 package com.emrealtunbilek.databindingkotlin.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -9,6 +10,7 @@ import com.emrealtunbilek.databindingkotlin.R
 import com.emrealtunbilek.databindingkotlin.databinding.TekSutunUrunLayoutBinding
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
+import com.emrealtunbilek.databindingkotlin.models.UrunViewModel
 
 
 class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : RecyclerView.Adapter<UrunRecyclerviewAdapter.MyViewHolder>() {
@@ -31,17 +33,22 @@ class UrunRecyclerviewAdapter(urunler:ArrayList<Urun>, context: Context) : Recyc
 
     fun listeyiYenile(yeniListe:ArrayList<Urun>){
         tumUrunler.clear()
+        notifyItemRangeRemoved(0,yeniListe.size)
         tumUrunler.addAll(yeniListe)
-        notifyDataSetChanged()
+        notifyItemInserted(0)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
-        holder.binding.urun = tumUrunler.get(position)
+
+        var mUrunViewHolder = UrunViewModel(tumUrunler.get(position), 1)
+
+        holder.binding.urunViewHolder = mUrunViewHolder
 
         holder.binding.mainActivityInterface=mMainActivityInterface
         //holder.binding.stringUrl="https://pixelz.cc/wp-content/uploads/2016/11/annapurna-massif-himalayas-nepal-4k-wallpaper.jpg"
 
-        holder.binding.executePendingBindings()
+       // holder.binding.executePendingBindings()
     }
 
     override fun getItemCount(): Int {

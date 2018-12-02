@@ -5,9 +5,8 @@
 
     <data>
         <import type="android.view.View"/>
-        <import type="com.emrealtunbilek.databindingkotlin.models.Urun"/>
         <import type="com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity"/>
-        <variable name="urun" type="Urun"/>
+        <variable name="urunViewHolder" type="com.emrealtunbilek.databindingkotlin.models.UrunViewModel"/>
         <variable name="mainActivityInterface" type="IMainActivity"/>
     </data>
 
@@ -15,14 +14,14 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="@{() -> mainActivityInterface.secilenUruneGit(urun)}"
+            android:onClick="@{() -> mainActivityInterface.secilenUruneGit(urunViewHolder.urun)}"
             android:id="@+id/tumLayout">
 
         <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/rbUrunDegerlendirmeOrt"
-                android:rating="@{urun.degerlendirmeNotu}"
+                android:rating="@{urunViewHolder.urun.degerlendirmeNotu}"
                 app:layout_constraintEnd_toStartOf="@+id/tvDegerlendirmeSayisi"
                 style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                 android:layout_marginEnd="20dp" android:layout_marginTop="8dp"
@@ -30,7 +29,7 @@
                 android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
                 app:layout_constraintBottom_toBottomOf="parent"/>
         <TextView
-                android:text="@{String.valueOf(urun.degerlendirmeSayisi)}"
+                android:text="@{String.valueOf(urunViewHolder.urun.degerlendirmeSayisi)}"
                 android:layout_width="wrap_content"
                 tools:text="( 9 )"
                 android:layout_height="wrap_content"
@@ -39,7 +38,7 @@
                 app:layout_constraintTop_toTopOf="@+id/rbUrunDegerlendirmeOrt" android:layout_marginStart="8dp"
                 app:layout_constraintStart_toEndOf="@+id/rbUrunDegerlendirmeOrt" android:layout_marginBottom="8dp"/>
         <TextView
-                android:text="@{urun.baslik}"
+                android:text="@{urunViewHolder.urun.baslik}"
                 android:layout_width="0dp"
                 tools:text="Ürün Başlık"
                 android:layout_height="wrap_content"
@@ -51,16 +50,18 @@
                 android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="parent"
                 android:textAlignment="center"/>
         <ImageView
-                app:resimGoster="@{urun.urunResim}"
+                app:listenerAta="@{urunViewHolder.listener}"
+                app:resimGoster="@{urunViewHolder.urun.urunResim}"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
                 android:id="@+id/imageView" android:layout_marginTop="8dp"
+                android:visibility="@{urunViewHolder.resimYuklendi ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintTop_toBottomOf="@+id/tvurunBaslik" app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginEnd="8dp"
-                android:scaleType="fitCenter"/>
+                android:scaleType="fitCenter" android:adjustViewBounds="true" android:cropToPadding="true"/>
         <TextView
-                android:text="@{urun.kampanyaVarMi() ? String.valueOf(urun.kampanyaliFiyat) : String.valueOf(urun.fiyat)}"
+                android:text="@{urunViewHolder.urun.kampanyaVarMi() ? String.valueOf(urunViewHolder.urun.kampanyaliFiyat) : String.valueOf(urunViewHolder.urun.fiyat)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="20.99"
@@ -69,16 +70,27 @@
                 android:layout_marginStart="8dp" android:textStyle="bold" android:textSize="30sp"
                 android:textColor="@color/colorAccent"/>
         <TextView
-                android:text="@{String.valueOf(urun.fiyat)}"
+                android:text="@{String.valueOf(urunViewHolder.urun.fiyat)}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="23.99"
-                android:visibility="@{urun.kampanyaVarMi() ? View.VISIBLE : View.INVISIBLE}"
+                android:visibility="@{urunViewHolder.urun.kampanyaVarMi() ? View.VISIBLE : View.INVISIBLE}"
                 android:id="@+id/tvOrjinalFiyat" app:layout_constraintStart_toEndOf="@+id/tvFiyat"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/ustunu_ciz"
                 app:layout_constraintTop_toTopOf="@+id/tvFiyat" app:layout_constraintBottom_toBottomOf="@+id/tvFiyat"
                 android:textStyle="bold" android:textSize="24sp"/>
+        <ProgressBar
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/progressBar2"
+                android:visibility="@{urunViewHolder.resimYuklendi ? View.GONE : View.VISIBLE}"
+                app:layout_constraintEnd_toEndOf="@+id/imageView"
+                app:layout_constraintStart_toStartOf="@+id/imageView"
+                android:layout_marginStart="8dp"
+                app:layout_constraintTop_toTopOf="@+id/imageView"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

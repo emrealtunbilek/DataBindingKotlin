@@ -67,6 +67,7 @@
                     android:textSize="18sp" android:textStyle="bold" android:textColor="@color/colorAccent"/>
             <ImageView
                     app:resimGoster="@{urunViewModel.urun.urunResim}"
+                    app:listenerAta="@{urunViewModel.listener}"
                     android:layout_width="0dp"
                     android:layout_height="250dp"
                     android:id="@+id/imageView" android:layout_marginTop="8dp"
@@ -74,7 +75,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="8dp"
-                    android:scaleType="fitCenter"/>
+                    android:scaleType="fitCenter" android:adjustViewBounds="true"/>
             <TextView
                     android:text="@{urunViewModel.urun.kampanyaVarMi() ? String.valueOf(urunViewModel.urun.kampanyaliFiyat) : String.valueOf(urunViewModel.urun.fiyat)}"
                     android:layout_width="wrap_content"
