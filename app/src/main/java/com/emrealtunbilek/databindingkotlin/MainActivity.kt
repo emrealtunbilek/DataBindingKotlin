@@ -6,11 +6,17 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import com.emrealtunbilek.databindingkotlin.databinding.ActivityMainBinding
 import com.emrealtunbilek.databindingkotlin.fragments.MainFragment
+import com.emrealtunbilek.databindingkotlin.fragments.MiktarDialogFragment
 import com.emrealtunbilek.databindingkotlin.fragments.UrunDetayFragment
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
 
 class MainActivity : AppCompatActivity(), IMainActivity{
+
+    override fun miktarFragmentBaslat() {
+        val miktarFragment = MiktarDialogFragment()
+        miktarFragment.show(supportFragmentManager,"miktar_dialog")
+    }
 
 
     override fun secilenUruneGit(urun: Urun) {
