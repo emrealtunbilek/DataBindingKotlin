@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.emrealtunbilek.databindingkotlin.databinding.ActivityMainBinding
 import com.emrealtunbilek.databindingkotlin.fragments.MainFragment
 import com.emrealtunbilek.databindingkotlin.fragments.MiktarDialogFragment
+import com.emrealtunbilek.databindingkotlin.fragments.SepetFragment
 import com.emrealtunbilek.databindingkotlin.fragments.UrunDetayFragment
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 import com.emrealtunbilek.databindingkotlin.models.Urun
@@ -84,9 +85,14 @@ class MainActivity : AppCompatActivity(), IMainActivity {
 
         binding.imageView2.setOnClickListener {
 
-        
-
-
+            var sepetFragment = supportFragmentManager.findFragmentByTag("sepet_fragment")
+            if(sepetFragment == null){
+                sepetFragment = SepetFragment()
+                val transaction = supportFragmentManager.beginTransaction()
+                transaction.replace(binding.anaContainer.id, sepetFragment,"sepet_fragment")
+                transaction.addToBackStack("sepet_fragment")
+                transaction.commit()
+            }
 
         }
 

@@ -14,13 +14,13 @@ import com.emrealtunbilek.databindingkotlin.models.UrunViewModel
 
 class UrunDetayFragment : Fragment() {
 
-    val binding:FragmentUrunDetayBinding by lazy {
-        FragmentUrunDetayBinding.inflate(layoutInflater)
-    }
 
+    lateinit var binding: FragmentUrunDetayBinding
     lateinit var secilenUrun:Urun
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle? ): View? {
+
+        binding= FragmentUrunDetayBinding.inflate(inflater)
 
         if(arguments != null){
             this.secilenUrun =arguments!!.getParcelable("secilen_urun")!!

@@ -6,8 +6,9 @@
 
 
     <data>
-
-        <variable name="sepettekiUrunSayisi" type="int"/>
+        <import type="android.view.View"/>
+        <import type="com.emrealtunbilek.databindingkotlin.models.SepetViewModel"/>
+        <variable name="sepetViewModel" type="SepetViewModel"/>
 
     </data>
 
@@ -58,6 +59,46 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/sepetBilgiContainer"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:visibility="@{sepetViewModel.sepetGorunurlugu ? View.VISIBLE : View.GONE}"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            <TextView
+                    android:text="Sepetinizde 8 ürün var. Toplam :"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvToplamUrunSayisi" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
+                    android:layout_marginStart="24dp" app:layout_constraintEnd_toStartOf="@+id/tvToplamTutar"
+                    android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.5" android:textSize="18sp"
+                    android:textStyle="bold"/>
+            <TextView
+                    android:text="22.50 TL"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tvToplamTutar" android:layout_marginEnd="24dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tvToplamUrunSayisi"
+                    app:layout_constraintHorizontal_bias="0.5" android:textSize="18sp" android:textStyle="bold"
+                    android:textColor="@color/colorAccent"/>
+
+            <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Alışverişi tamamla"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/tvToplamUrunSayisi"
+                    app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
+                    android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -65,7 +106,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+                app:layout_constraintTop_toBottomOf="@+id/sepetBilgiContainer">
 
         </FrameLayout>
 
