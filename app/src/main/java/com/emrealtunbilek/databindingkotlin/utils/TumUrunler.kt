@@ -62,12 +62,6 @@ class TumUrunler {
         for (urun in tumUrunlerDizisi){
             tumUrunlerMap.put(urun.seriNumarasi.toString(), urun)
 
-            /*
-            * 123 --> KIRMIZI_LAMBA
-            * 456 --> SARI_KUPA
-            *
-            *
-            * */
         }
     }
 

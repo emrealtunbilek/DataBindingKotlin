@@ -18,6 +18,10 @@ import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 
 class MainActivity : AppCompatActivity(), IMainActivity {
 
+    override fun sepetGorunurlugu(goster: Boolean) {
+        binding.sepetViewModel!!.sepetGorunurlugu = goster
+    }
+
     override fun urunEkle(urun: Urun, miktar: Int) {
         Log.e("EEE","SEPETE EKLENEN URUN ADI:"+urun.baslik+" miktarı:"+miktar)
 
@@ -105,26 +109,23 @@ class MainActivity : AppCompatActivity(), IMainActivity {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val seriNumaralari:HashSet<String> = preferences.getStringSet("sepet_set",HashSet<String>()) as HashSet<String>
-
         val mSepettekiUrunler = ArrayList<SepetUrun>()
-        val mSepetViewModel = SepetViewModel()
+
+        var mSepetViewModel = SepetViewModel()
         val tumUrunler=TumUrunler()
 
-        for(eklenecekSeriNo in seriNumaralari){
-            val miktar = preferences.getInt(eklenecekSeriNo, 0)
-            val urun:Urun = tumUrunler.tumUrunlerMap.get(eklenecekSeriNo)!!
-            val arraylisteEklenecekSepetUrun = SepetUrun(urun ,miktar)
+        for(seriNo in seriNumaralari){
+            val urun:Urun= tumUrunler.tumUrunlerMap.get(seriNo)!!
+            val miktar = preferences.getInt(seriNo,0)
+            val arraylisteEklenecekSepetUrun = SepetUrun(urun,miktar)
             mSepettekiUrunler.add(arraylisteEklenecekSepetUrun)
         }
 
 
-        mSepetViewModel.sepettekiUrunler = mSepettekiUrunler
-        mSepetViewModel.sepetGorunurlugu = true
-        binding.sepetViewModel =mSepetViewModel
 
-
-
-
+        mSepetViewModel.sepettekiUrunler  = mSepettekiUrunler
+        mSepetViewModel.sepetGorunurlugu = false
+        binding.sepetViewModel=mSepetViewModel
 
     }
 

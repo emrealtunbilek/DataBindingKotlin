@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import com.emrealtunbilek.databindingkotlin.databinding.FragmentSepetBinding
+import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
 
 
 class SepetFragment : Fragment() {
@@ -19,7 +20,17 @@ class SepetFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
+        binding.iMainInterface = activity as IMainActivity
+
+        binding.iMainInterface!!.sepetGorunurlugu(true)
+
         return binding.root
+    }
+
+    override fun onDestroy() {
+
+        binding.iMainInterface!!.sepetGorunurlugu(false)
+        super.onDestroy()
     }
 
 
