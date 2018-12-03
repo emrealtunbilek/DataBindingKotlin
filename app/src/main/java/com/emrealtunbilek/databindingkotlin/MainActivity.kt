@@ -11,7 +11,10 @@ import com.emrealtunbilek.databindingkotlin.fragments.MiktarDialogFragment
 import com.emrealtunbilek.databindingkotlin.fragments.SepetFragment
 import com.emrealtunbilek.databindingkotlin.fragments.UrunDetayFragment
 import com.emrealtunbilek.databindingkotlin.interfaces.IMainActivity
+import com.emrealtunbilek.databindingkotlin.models.SepetUrun
+import com.emrealtunbilek.databindingkotlin.models.SepetViewModel
 import com.emrealtunbilek.databindingkotlin.models.Urun
+import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 
 class MainActivity : AppCompatActivity(), IMainActivity {
 
@@ -102,7 +105,25 @@ class MainActivity : AppCompatActivity(), IMainActivity {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
 
         val seriNumaralari:HashSet<String> = preferences.getStringSet("sepet_set",HashSet<String>()) as HashSet<String>
-        binding.sepettekiUrunSayisi=seriNumaralari.size
+
+        val mSepettekiUrunler = ArrayList<SepetUrun>()
+        val mSepetViewModel = SepetViewModel()
+        val tumUrunler=TumUrunler()
+
+        for(eklenecekSeriNo in seriNumaralari){
+            val miktar = preferences.getInt(eklenecekSeriNo, 0)
+            val urun:Urun = tumUrunler.tumUrunlerMap.get(eklenecekSeriNo)!!
+            val arraylisteEklenecekSepetUrun = SepetUrun(urun ,miktar)
+            mSepettekiUrunler.add(arraylisteEklenecekSepetUrun)
+        }
+
+
+        mSepetViewModel.sepettekiUrunler = mSepettekiUrunler
+        mSepetViewModel.sepetGorunurlugu = true
+        binding.sepetViewModel =mSepetViewModel
+
+
+
 
 
     }

@@ -46,7 +46,7 @@
                     app:layout_constraintBottom_toBottomOf="@+id/toolbar" app:layout_constraintEnd_toEndOf="parent"
                     android:layout_marginEnd="16dp"/>
             <TextView
-                    android:text="@{String.valueOf(sepettekiUrunSayisi)}"
+                    android:text="@{String.valueOf(sepetViewModel.sepettekiUrunler.size())}"
                     android:layout_width="wrap_content"
                     tools:text="2"
                     android:layout_height="wrap_content"
@@ -68,7 +68,8 @@
                 android:visibility="@{sepetViewModel.sepetGorunurlugu ? View.VISIBLE : View.GONE}"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
             <TextView
-                    android:text="Sepetinizde 8 ürün var. Toplam :"
+                    android:text="@{sepetViewModel.sepettekiToplamUrunSayisi()}"
+                    tools:text="Sepetinizde 8 ürün var. Toplam :"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvToplamUrunSayisi" android:layout_marginTop="8dp"
@@ -77,7 +78,8 @@
                     android:layout_marginEnd="8dp" app:layout_constraintHorizontal_bias="0.5" android:textSize="18sp"
                     android:textStyle="bold"/>
             <TextView
-                    android:text="22.50 TL"
+                    android:text="@{sepetViewModel.sepettekiUrunlerinToplamTutariniBul()}"
+                    tools:text="22.50 TL"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/tvToplamTutar" android:layout_marginEnd="24dp"
