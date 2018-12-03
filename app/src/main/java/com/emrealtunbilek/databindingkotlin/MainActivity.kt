@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity(), IMainActivity {
 
 
         editor.apply()
+        miktarGuncelle(1)
+        sepettekiUrunSayisiniGetir()
 
 
 
@@ -71,11 +73,35 @@ class MainActivity : AppCompatActivity(), IMainActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        fragmentBaslat()
+        mainFragmentiBaslat()
+        sepettekiUrunSayisiniGetir()
+        initLayout()
+
 
     }
 
-    private fun fragmentBaslat() {
+    private fun initLayout() {
+
+        binding.imageView2.setOnClickListener {
+
+        
+
+
+
+        }
+
+    }
+
+    fun sepettekiUrunSayisiniGetir(){
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+
+        val seriNumaralari:HashSet<String> = preferences.getStringSet("sepet_set",HashSet<String>()) as HashSet<String>
+        binding.sepettekiUrunSayisi=seriNumaralari.size
+
+
+    }
+
+    private fun mainFragmentiBaslat() {
 
         val mainFragment = MainFragment()
         val transaction = supportFragmentManager.beginTransaction()
