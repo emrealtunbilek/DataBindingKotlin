@@ -49,9 +49,9 @@ class SepetFragment : Fragment() {
             val arraylisteEklenecekSepetUrun = SepetUrun(urun,miktar)
             mSepettekiUrunler.add(arraylisteEklenecekSepetUrun)
         }
-        
+
         mSepetViewModel.sepettekiUrunler  = mSepettekiUrunler
-        mSepetViewModel.sepetGorunurlugu = false
+        mSepetViewModel.sepetGorunurlugu = true
         binding.sepetViewModel=mSepetViewModel
 
     }

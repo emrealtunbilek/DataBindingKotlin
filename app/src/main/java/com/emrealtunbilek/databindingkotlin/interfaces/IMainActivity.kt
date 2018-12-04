@@ -8,4 +8,5 @@ interface IMainActivity {
     fun miktarGuncelle(miktar:Int)
     fun urunEkle(urun:Urun, miktar:Int)
     fun sepetGorunurlugu(goster:Boolean)
+    fun sepetGuncelle(urun:Urun, miktar:Int)
 }

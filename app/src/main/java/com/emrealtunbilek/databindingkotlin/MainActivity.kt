@@ -15,8 +15,22 @@ import com.emrealtunbilek.databindingkotlin.models.SepetUrun
 import com.emrealtunbilek.databindingkotlin.models.SepetViewModel
 import com.emrealtunbilek.databindingkotlin.models.Urun
 import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
+import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), IMainActivity {
+
+
+    override fun sepetGuncelle(urun: Urun, miktar: Int) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+
+        var suanKiMiktar = preferences.getInt(urun.seriNumarasi.toString(), 0)
+
+        editor.putInt(urun.seriNumarasi.toString(), (suanKiMiktar+miktar))
+        editor.apply()
+
+        sepettekiUrunSayisiniGetir()
+    }
 
     override fun sepetGorunurlugu(goster: Boolean) {
         binding.sepetViewModel!!.sepetGorunurlugu = goster
@@ -121,10 +135,13 @@ class MainActivity : AppCompatActivity(), IMainActivity {
             mSepettekiUrunler.add(arraylisteEklenecekSepetUrun)
         }
 
-
+        try {
+            mSepetViewModel.sepetGorunurlugu = binding.sepetViewModel?.sepetGorunurlugu!!
+        }catch (e:Exception){
+            Log.e("EEE","BEKLENEN HATA:"+e.message)
+        }
 
         mSepetViewModel.sepettekiUrunler  = mSepettekiUrunler
-        mSepetViewModel.sepetGorunurlugu = false
         binding.sepetViewModel=mSepetViewModel
 
     }
