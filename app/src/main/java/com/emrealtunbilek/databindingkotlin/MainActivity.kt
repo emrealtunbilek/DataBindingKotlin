@@ -2,8 +2,11 @@ package com.emrealtunbilek.databindingkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.preference.PreferenceManager
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import com.emrealtunbilek.databindingkotlin.databinding.ActivityMainBinding
 import com.emrealtunbilek.databindingkotlin.fragments.MainFragment
@@ -18,6 +21,8 @@ import com.emrealtunbilek.databindingkotlin.utils.TumUrunler
 import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), IMainActivity {
+
+    var cikmakIcinTikla = false
 
     override fun urunuSepettenSil(sepetUrun: SepetUrun) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
@@ -145,6 +150,68 @@ class MainActivity : AppCompatActivity(), IMainActivity {
             }
 
         }
+
+        binding.btnTamamla.setOnClickListener {
+
+            binding.progressBar3.visibility= View.VISIBLE
+            object : CountDownTimer(2000,2000){
+                override fun onFinish() {
+                    binding.progressBar3.visibility=View.GONE
+                    sepettekiTumUrunleriSil()
+                }
+
+                override fun onTick(millisUntilFinished: Long) {
+
+                }
+
+
+            }.start()
+
+
+
+        }
+
+    }
+
+    private fun sepettekiTumUrunleriSil() {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+
+
+        val seriNumaralari:HashSet<String> = preferences.getStringSet("sepet_set",HashSet<String>()) as HashSet<String>
+        for (seriNo in seriNumaralari){
+            editor.remove(seriNo)
+            editor.apply()
+        }
+
+        editor.remove("sepet_set")
+        editor.apply()
+
+        Toast.makeText(this,"Alışveriş için teşekkürler",Toast.LENGTH_LONG).show()
+        anaSayfayaGit()
+        sepettekiUrunSayisiniGetir()
+    }
+
+    private fun anaSayfayaGit() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun onBackPressed() {
+
+        var backStackFragmentSayisi = supportFragmentManager.backStackEntryCount
+
+        if(backStackFragmentSayisi == 0 && cikmakIcinTikla){
+            super.onBackPressed()
+        }
+
+        if(backStackFragmentSayisi == 0 && !cikmakIcinTikla){
+            Toast.makeText(this,"Çıkmak için tekrar geriye tıklayın",Toast.LENGTH_LONG).show()
+            cikmakIcinTikla = true
+        }else{
+            cikmakIcinTikla = false
+            super.onBackPressed()
+        }
+
 
     }
 
