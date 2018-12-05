@@ -19,6 +19,35 @@ import java.lang.Exception
 
 class MainActivity : AppCompatActivity(), IMainActivity {
 
+    override fun urunuSepettenSil(sepetUrun: SepetUrun) {
+        val preferences = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = preferences.edit()
+
+        editor.remove(sepetUrun.urun.seriNumarasi.toString())
+        editor.apply()
+
+        val seriNumaralari:HashSet<String> = preferences.getStringSet("sepet_set",HashSet<String>()) as HashSet<String>
+
+        if(seriNumaralari.size == 1){
+            editor.remove("sepet_set")
+            editor.apply()
+        }else{
+
+            seriNumaralari.remove(sepetUrun.urun.seriNumarasi.toString())
+            editor.putStringSet("sepet_set",seriNumaralari)
+            editor.apply()
+        }
+
+        sepettekiUrunSayisiniGetir()
+
+        val sepetFragment=supportFragmentManager.findFragmentByTag("sepet_fragment") as SepetFragment
+
+        sepetFragment.sepetiGuncelle()
+
+
+
+    }
+
 
     override fun sepetGuncelle(urun: Urun, miktar: Int) {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)

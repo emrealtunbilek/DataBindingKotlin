@@ -34,6 +34,12 @@ class SepetRecyclerviewAdapter(sepettekiUrunler:ArrayList<SepetUrun>) : Recycler
         holder.binding.tekSepetUrun = mSepetUrunViewModel
     }
 
+    fun sepetiGuncelle(yeniListe: ArrayList<SepetUrun>) {
+        sepettekiUrunlerim.clear()
+        sepettekiUrunlerim.addAll(yeniListe)
+        notifyDataSetChanged()
+    }
+
 
     inner class MyViewHolder(var binding: TekSatirSepetUrunBinding) : RecyclerView.ViewHolder(binding.root)
 }

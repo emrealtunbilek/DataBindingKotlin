@@ -1,5 +1,6 @@
 package com.emrealtunbilek.databindingkotlin.interfaces
 
+import com.emrealtunbilek.databindingkotlin.models.SepetUrun
 import com.emrealtunbilek.databindingkotlin.models.Urun
 
 interface IMainActivity {
@@ -9,4 +10,5 @@ interface IMainActivity {
     fun urunEkle(urun:Urun, miktar:Int)
     fun sepetGorunurlugu(goster:Boolean)
     fun sepetGuncelle(urun:Urun, miktar:Int)
+    fun urunuSepettenSil(sepetUrun: SepetUrun)
 }

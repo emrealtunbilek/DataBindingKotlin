@@ -63,5 +63,10 @@ class SepetFragment : Fragment() {
         super.onDestroy()
     }
 
+    fun sepetiGuncelle() {
+
+        sepettekiUrunSayisiniGetir()
+    }
+
 
 }

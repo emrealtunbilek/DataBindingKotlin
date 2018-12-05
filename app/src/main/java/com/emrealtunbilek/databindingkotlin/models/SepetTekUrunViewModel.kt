@@ -30,12 +30,21 @@ class SepetTekUrunViewModel: BaseObservable() {
 
     fun miktarAzalt(context: Context){
         val oankiSepetTekUrun:SepetUrun = sepetTekUrun!!
+        val iMainInterface = context as IMainActivity
         if (oankiSepetTekUrun.miktar > 1){
             oankiSepetTekUrun.miktar = oankiSepetTekUrun.miktar -1
             sepetTekUrun = oankiSepetTekUrun
 
-            val iMainInterface = context as IMainActivity
+
             iMainInterface.sepetGuncelle(sepetTekUrun?.urun!!, -1)
+        }else if(oankiSepetTekUrun.miktar == 1){
+            oankiSepetTekUrun.miktar = oankiSepetTekUrun.miktar -1
+            sepetTekUrun = oankiSepetTekUrun
+
+            iMainInterface.urunuSepettenSil(sepetTekUrun!!)
+
+
+
         }
     }
 

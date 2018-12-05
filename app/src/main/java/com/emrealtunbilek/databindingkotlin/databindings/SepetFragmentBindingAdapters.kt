@@ -11,16 +11,23 @@ object SepetFragmentBindingAdapters {
     @JvmStatic
     @BindingAdapter("sepettekiUrunlerListesiniGoster")
     fun urunlerListesiniGoster(recyclerView: RecyclerView, sepettekiUrunListesi:ArrayList<SepetUrun>){
-        if(sepettekiUrunListesi.size ==0){
+        if(sepettekiUrunListesi == null){
             return
         }
         val mLayoutManager = LinearLayoutManager(recyclerView.context,RecyclerView.VERTICAL,false)
+
         if(recyclerView.layoutManager == null){
             recyclerView.layoutManager = mLayoutManager
         }
-        val mAdapter = SepetRecyclerviewAdapter(sepettekiUrunListesi)
-        if(recyclerView.adapter == null){
-            recyclerView.adapter=mAdapter
+
+        var myAdapter = recyclerView.adapter as SepetRecyclerviewAdapter?
+
+        if(myAdapter == null){
+            myAdapter = SepetRecyclerviewAdapter(sepettekiUrunListesi)
+            recyclerView.adapter = myAdapter
+        }
+        else{
+            myAdapter.sepetiGuncelle(sepettekiUrunListesi)
         }
     }
 }
